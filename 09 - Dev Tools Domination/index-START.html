@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+<body>
+
+  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+  <script>
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+
+    // Regular
+      console.log('hello')
+    // Interpolated
+    console.log('hello %s','world')
+    // Styled
+    console.log('%c style me','color:red;')
+    // warning!
+    console.warn('error')
+    // Error :|
+    console.error('it is error man')
+    // Info
+    console.info('canvas was fun')
+    // Testing
+    const p = document.querySelector('p')
+    console.assert(p.classList.contains('hello'),'it does not contain hello class');
+    // clearing
+    // console.clear();
+    // Viewing DOM Elements
+    console.log(p);
+    console.dir(p);
+    // Grouping together
+    dogs.forEach(dog=>{
+      console.groupCollapsed(`${dog.name}`)
+
+      console.log(`the name is ${dog.name}`)
+      console.log(`the age is ${dog.age}`)
+
+
+      console.groupEnd(`${dog.name}`)
+    })
+    // counting
+    console.count('linas')
+    console.count('linas')
+    console.count('linas')
+    console.count('linas')
+    console.count('uffy')
+    // timing
+
+    console.time('getting data')
+
+    fetch('https://api.github.com/users/linas23')
+          .then(data=>data.json())
+          .then(data=>{
+            console.table(data);
+            console.timeEnd('getting data');
+          }).catch(e=>{
+            console.timeEnd('getting data');
+            console.log('could not get the data')
+          })
+
+    console.table(dogs)
+
+  </script>
+</body>
+</html>
